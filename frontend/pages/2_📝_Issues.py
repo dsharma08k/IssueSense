@@ -148,6 +148,15 @@ with tab1:
     with filter_cols[2]:
         if st.button("🔄 REFRESH", use_container_width=True):
             st.rerun()
+    with filter_cols[3]:
+        if st.button("🔧 FIX SEARCH", use_container_width=True, help="Regenerate embeddings for old issues to enable search"):
+            with st.spinner("Regenerating embeddings..."):
+                try:
+                    result = api_client.regenerate_embeddings()
+                    st.success(f"✅ Fixed {result.get('updated', 0)} issues!")
+                    st.rerun()
+                except Exception as e:
+                    st.error(f"Error: {str(e)}")
     
     # Fetch issues
     try:

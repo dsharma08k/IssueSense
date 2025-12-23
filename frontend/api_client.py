@@ -107,6 +107,15 @@ class APIClient:
         response.raise_for_status()
         return response.json()
     
+    def regenerate_embeddings(self) -> Dict:
+        """Regenerate embeddings for all issues (fixes search)"""
+        response = self.session.post(
+            f"{self.base_url}/api/v1/issues/regenerate-embeddings",
+            headers=self._get_headers()
+        )
+        response.raise_for_status()
+        return response.json()
+    
     # Solutions
     def create_solution(self, issue_id: str, solution_data: Dict) -> Dict:
         """Create a solution"""
