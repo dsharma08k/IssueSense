@@ -4,7 +4,7 @@ streamlit-extras==0.3.6
 
 # API Client
 requests==2.31.0
-httpx==0.26.0
+# httpx pinned version removed to avoid conflict with supabase
 
 # Data & Visualization
 pandas==2.1.4
@@ -13,7 +13,7 @@ altair==5.2.0
 
 # Auth
 python-dotenv==1.0.0
-supabase==2.3.0
+supabase>=2.0.0
 
 # Utilities
 pydantic==2.5.3
