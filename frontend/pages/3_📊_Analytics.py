@@ -113,6 +113,29 @@ st.markdown("""
     .stButton button:hover {
         background: #2563eb !important;
     }
+    
+    .stat-orb {
+        background: #ffffff;
+        border: 2px solid rgba(168, 85, 247, 0.3);
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+    }
+    
+    .stat-orb h1 {
+        font-family: 'Inter', sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin: 0;
+    }
+    
+    .stat-orb p {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.85rem;
+        color: #64748b;
+        margin-top: 4px;
+    }
 </style>
 """, unsafe_allow_html=True)
 
