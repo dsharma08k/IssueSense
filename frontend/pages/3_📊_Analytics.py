@@ -170,7 +170,7 @@ try:
     with cols[1]:
         st.markdown(f"""
             <div class="stat-orb" style="border-color: rgba(16, 185, 129, 0.4);">
-                <h1 style="background: linear-gradient(135deg, #10b981, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                <h1 style="color: #10b981;">
                     {stats['resolved_issues']}
                 </h1>
                 <p>Resolved</p>
@@ -180,7 +180,7 @@ try:
     with cols[2]:
         st.markdown(f"""
             <div class="stat-orb" style="border-color: rgba(245, 158, 11, 0.4);">
-                <h1 style="background: linear-gradient(135deg, #f59e0b, #ef4444); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                <h1 style="color: #f59e0b;">
                     {stats['open_issues']}
                 </h1>
                 <p>Open</p>
@@ -192,7 +192,7 @@ try:
         rate_color = "#10b981" if rate >= 70 else "#f59e0b" if rate >= 40 else "#ef4444"
         st.markdown(f"""
             <div class="stat-orb" style="border-color: rgba(6, 182, 212, 0.4);">
-                <h1 style="background: linear-gradient(135deg, {rate_color}, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                <h1 style="color: {rate_color};">
                     {rate}%
                 </h1>
                 <p>Resolution Rate</p>
