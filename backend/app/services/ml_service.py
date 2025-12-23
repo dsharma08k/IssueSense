@@ -1,10 +1,12 @@
 """ML Service for embeddings and semantic search"""
 
-from sentence_transformers import SentenceTransformer
-from typing import List
+from typing import List, TYPE_CHECKING
 import numpy as np
 import logging
 from app.config import settings
+
+if TYPE_CHECKING:
+    from sentence_transformers import SentenceTransformer
 
 logger = logging.getLogger(__name__)
 
@@ -16,10 +18,11 @@ class MLService:
         self._model = None
     
     @property
-    def model(self) -> SentenceTransformer:
+    def model(self) -> "SentenceTransformer":
         """Lazy load the embedding model"""
         if self._model is None:
             try:
+                from sentence_transformers import SentenceTransformer
                 logger.info(f"Loading embedding model: {settings.embedding_model}")
                 self._model = SentenceTransformer(
                     settings.embedding_model,
