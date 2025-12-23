@@ -153,3 +153,39 @@ async def batch_delete_issues(
             if result.data: deleted_count += 1
         except: pass
     return {"success": True, "deleted": deleted_count, "total": len(issue_ids)}
+
+
+@router.post("/regenerate-embeddings")
+async def regenerate_embeddings(
+    current_user: dict = Depends(get_current_user),
+    access_token: str = Depends(get_access_token),
+    ml_service: MLService = Depends(get_ml_service)
+):
+    """Regenerate embeddings for all user's issues (fixes search for old issues)"""
+    user_db = db.get_user_client(access_token)
+    
+    # Get all issues
+    result = user_db.table("issues").select("*").eq("user_id", current_user['id']).execute()
+    
+    if not result.data:
+        return {"success": True, "updated": 0, "message": "No issues found"}
+    
+    updated_count = 0
+    for issue in result.data:
+        try:
+            # Generate embedding text and embedding
+            embedding_text = ml_service.create_embedding_text(issue)
+            embedding = ml_service.generate_embedding(embedding_text)
+            
+            # Update issue with new embedding
+            user_db.table("issues").update({
+                "embedding": embedding,
+                "embedding_text": embedding_text
+            }).eq("id", issue['id']).execute()
+            
+            updated_count += 1
+        except Exception as e:
+            pass  # Skip failed issues
+    
+    return {"success": True, "updated": updated_count, "total": len(result.data)}
+
