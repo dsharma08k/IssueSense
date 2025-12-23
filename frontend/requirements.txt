@@ -13,6 +13,7 @@ altair==5.2.0
 
 # Auth
 python-dotenv==1.0.0
+supabase==2.3.0
 
 # Utilities
 pydantic==2.5.3
