@@ -1,0 +1,18 @@
+# Streamlit & UI
+streamlit==1.30.0
+streamlit-extras==0.3.6
+
+# API Client
+requests==2.31.0
+httpx==0.26.0
+
+# Data & Visualization
+pandas==2.1.4
+plotly==5.18.0
+altair==5.2.0
+
+# Auth
+python-dotenv==1.0.0
+
+# Utilities
+pydantic==2.5.3
